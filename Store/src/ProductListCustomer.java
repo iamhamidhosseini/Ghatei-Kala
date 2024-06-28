@@ -43,12 +43,12 @@ public class ProductListCustomer extends JFrame implements User{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       if(e.getSource() == userButton){
-           UserInfo userInfo = new UserInfo();
-           userInfo.frame();
-       } else if (e.getSource() == shoppingCart) {
+        if(e.getSource() == userButton){
+            UserInfo userInfo = new UserInfo();
+
+        } else if (e.getSource() == shoppingCart) {
             ShoppingCart shoppingCart = new ShoppingCart();
             shoppingCart.frame();
-       }
+        }
     }
 }
