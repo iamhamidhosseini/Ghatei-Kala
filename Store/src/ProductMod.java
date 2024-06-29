@@ -1,30 +1,37 @@
-import javax.swing.*;
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 
 public class ProductMod extends Product implements ActionListener{
+    
+    JButton removeFromList;
+
     public ProductMod(String name, String price, String address) {
         super(name, price, address);
     }
-
-    public void setup(){
-        this.setPreferredSize(new Dimension(200, 250));
-        this.setBackground(Color.WHITE);
-        this.setLayout(new FlowLayout(FlowLayout.LEFT));
-        this.add(productPic);
-        this.add(productName);
-        this.add(productPrice);
-        JButton removeButton = new JButton("X");
-        removeButton.setPreferredSize(new Dimension(50, 50));
-        removeButton.addActionListener(this);
-        this.add(removeButton, FlowLayout.LEADING);
-        addMouseListener(this);
-
+    
+    @Override
+    public void mousePressed(MouseEvent e) {
+        RemoveScreen removeScreen = new RemoveScreen(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Blap");
+        if(e.getSource() == removeFromList){
+                     
+        }
     }
 }

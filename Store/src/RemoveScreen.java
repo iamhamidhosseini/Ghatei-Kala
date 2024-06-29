@@ -1,5 +1,8 @@
-import javax.swing.*;
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -9,17 +12,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
-public class PurchaseScreen extends JFrame implements ActionListener {
+
+public class RemoveScreen extends JFrame implements ActionListener {
+
 
 
     JLabel name;
     JLabel price;
     JLabel pic;
-    JButton addToCart = new JButton("افزودن به سبد خرید");
+    JButton removeFromList = new JButton("حذف از لیست کالا");
     Product data;
+   
 
-    public PurchaseScreen(Product product){
+    public RemoveScreen(Product product){
         data = product;
         name = new JLabel(product.name);
         name.setPreferredSize(new Dimension(400, 100));
@@ -37,48 +47,53 @@ public class PurchaseScreen extends JFrame implements ActionListener {
         pic.setPreferredSize(new Dimension(400, 400));
         pic.setBounds(0,0,400, 400);
 
-        addToCart.setPreferredSize(new Dimension(380, 90));
-        addToCart.setBounds(410, 300, 380,50);
-        addToCart.setBackground(Color.GREEN);
-        addToCart.setFont(new Font(Font.SERIF, Font.PLAIN, 50));
-        addToCart.addActionListener(this);
+        removeFromList.setPreferredSize(new Dimension(380, 90));
+        removeFromList.setBounds(410, 300, 380,50);
+        removeFromList.setBackground(Color.RED);
+        removeFromList.setFont(new Font(Font.SERIF, Font.PLAIN, 50));
+        removeFromList.addActionListener(this);
         
         this.setSize(800, 400);
         this.setLayout(null);
         this.add(pic);
         this.add(name);
         this.add(price);
-        this.add(addToCart);
+        this.add(removeFromList);
         this.setVisible(true);
        
     }
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == addToCart){
+        if(e.getSource() == removeFromList){
+           
             try {
-                String host="jdbc:derby://localhost:1527/sabad";
-                String username="sabad", password="sabad";
+                String host="jdbc:derby://localhost:1527/P";
+                String username="MAMAD", password="1020315";
                 Connection con = DriverManager.getConnection( host, username, password );
                 Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                String SQL="select * from sabad";
+                String SQL="select * from PRODUCTS";System.out.println("c");
                 ResultSet rs=stmt.executeQuery(SQL);
-                rs.moveToInsertRow();
-                rs.updateString("productname", data.name);
-                rs.updateString("price", data.price);
-                rs.updateString("address", data.address);
-                rs.insertRow();
+                System.out.println("d");
+               
+                while(rs.next()){
+                    System.out.println("e");
+                    if(rs.getString("PRODUCTNAME").equals(data.name));{
+                        rs.next();
+                        rs.deleteRow();
+                        break;
+                    }
+                }
+                stmt.close();
                 rs.close();
-                rs=stmt.executeQuery(SQL);             
+                
+                System.out.println("f");
+                this.dispose();
+                
+
+            } catch (SQLException ex) {
+                Logger.getLogger(RemoveScreen.class.getName()).log(Level.SEVERE, null, ex);System.out.println("g");
             }
-            catch (SQLException ex) {
-                Logger.getLogger(PurchaseScreen.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            this.dispose();
         }
     }
-    
 }

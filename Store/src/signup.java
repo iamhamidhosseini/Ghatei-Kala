@@ -1,9 +1,19 @@
+
+/**
+ *
+ * @author 66490812
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class signup implements ActionListener{
     JFrame frame = new JFrame("Ghatei Kala");
@@ -18,7 +28,7 @@ public class signup implements ActionListener{
     JLabel text4 = new JLabel("ایمیل");JLabel text5 = new JLabel("سن");
     JLabel text6 = new JLabel("رمز عبور");JLabel text7 = new JLabel("تایید رمز عبور");
     int error;
-    Connection con;
+    //Connection con;
 
 
     public signup(){
@@ -70,8 +80,8 @@ public class signup implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         //////////////////////////////// Connecting to database /////////////////////////////////////////////
-
-
+        
+        
         if (e.getSource()==confirm){
 
             //////////////////////////////////// Get Strings ////////////////////////////////////////////////
@@ -84,16 +94,34 @@ public class signup implements ActionListener{
                     if (email.startsWith("@")) {
                         if (!name.equals("") && !lastName.equals("")) {
                             if (phoneNumber.length() == 11) {
-
-                                costumer = new Costumer(name, lastName, age, phoneNumber, id, email, password);
-
+                               
                                 try {
-                                    add(costumer.getName(),costumer.getFamily(),costumer.getAge(),costumer.getID(),costumer.getEmail(),costumer.getPhone(),costumer.getPassword());
-                                } catch (IOException ex) {
-                                    throw new RuntimeException(ex);
+                                    
+                                    costumer = new Costumer(name, lastName, age, phoneNumber, id, email, password, "0");
+                                    String host="jdbc:derby://localhost:1527/P";
+                                    String username="MAMAD", passwords="1020315";
+                                    
+                                    Connection con = DriverManager.getConnection( host, username, passwords );
+                                    Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                                    String SQL="select * from CO";
+                                    ResultSet rs=stmt.executeQuery(SQL);
+                                    rs.moveToInsertRow();
+                                    rs.updateString("NAME", name);
+                                    rs.updateString("LASTNAME", lastName);
+                                    rs.updateString("PHONENUMBER", phoneNumber);
+                                    rs.updateString("ID", id);
+                                    rs.updateString("AGE", age);
+                                    rs.updateString("PASSWORD", password);
+                                    rs.updateString("EMAIL", email);
+                                    rs.insertRow();
+                                    rs.close();
+                                    rs=stmt.executeQuery(SQL);
+
+                                    
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(signup.class.getName()).log(Level.SEVERE, null, ex);
+                                    System.out.println("HIIIJJI");
                                 }
-
-
                                 frame.dispose();
                                 sendEmail x = new sendEmail();
                             }
@@ -133,10 +161,6 @@ public class signup implements ActionListener{
         }
 
     }
-    public void add(String name , String lastname , String age , String id , String email , String phoneNumber , String password) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("Costumers.txt"),true));
-        bufferedWriter.write(name +" "+lastname +" "+age +" "+id +" "+email +" "+phoneNumber +" "+password+"\n");
-        bufferedWriter.close();
-    }
+   
 
 }

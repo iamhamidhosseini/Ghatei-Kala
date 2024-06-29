@@ -1,3 +1,5 @@
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,7 +21,7 @@ public class sendEmail implements ActionListener{
     JButton ok = new JButton("باشه");
     JLabel text = new JLabel("ایمیل تایید ساخت اکانت به شما ارسال شد");
     JLabel text1 = new JLabel("حال میتوانید با اکانتی که ساختید از قسمت ورود وارد شوید");
-
+    
     public sendEmail(){
         ///////////////////////// make frame //////////////////////////
         frame.setDefaultCloseOperation(3);
@@ -27,13 +29,13 @@ public class sendEmail implements ActionListener{
         frame.setLayout(null);
         frame.getContentPane().setBackground(Color.gray);
         frame.setVisible(true);
-
+        
         //////////////////////// Set Button ///////////////////////////
         ok.setBounds(600,600,300,70);
         ok.setFont(font);
         ok.setFocusable(false);
         ok.addActionListener(this);frame.add(ok);
-
+        
         //////////////////////// Set text ////////////////////////////
         text.setFont(font);
         text.setBounds(580, 100, 1000, 100);
@@ -42,7 +44,7 @@ public class sendEmail implements ActionListener{
         text1.setBounds(510, 200, 1000, 100);
         frame.add(text1);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==ok){

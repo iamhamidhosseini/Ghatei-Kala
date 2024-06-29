@@ -5,13 +5,12 @@ import java.awt.event.MouseListener;
 
 public class Product extends JPanel implements MouseListener {
 
-    String name;
-    String price;
-    String address;
-
     JLabel productPic;
     JLabel productName;
     JLabel productPrice;
+    String name;
+    String price;
+    String address;
 
     public Product(String name, String price, String address){
         this.name = name;
@@ -19,7 +18,10 @@ public class Product extends JPanel implements MouseListener {
         this.address = address;
         productName = new JLabel(name);
         productPrice = new JLabel(price);
-        productPic = new JLabel(new ImageIcon(address));  //ImageIcon needs to replaced with an actual processed ImageIcon
+        ImageIcon imageIcon = new ImageIcon(address);
+        ImageIcon resizedImageIcon = new ImageIcon(imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+
+        productPic = new JLabel(resizedImageIcon);
         this.setup();
     }
 
@@ -27,8 +29,11 @@ public class Product extends JPanel implements MouseListener {
         this.setPreferredSize(new Dimension(200, 250));
         this.setBackground(Color.WHITE);
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        productPic.setBounds(0, 0, 200, 200);
         this.add(productPic);
+        productName.setBounds(0, 200, 25, 200);
         this.add(productName);
+        productPrice.setBounds(0, 225, 25, 200);
         this.add(productPrice);
         addMouseListener(this);
     }
@@ -44,8 +49,7 @@ public class Product extends JPanel implements MouseListener {
         this.setBackground(Color.RED);
         this.revalidate();
         this.repaint();
-        PurchaseScreen buyProduct = new PurchaseScreen(this);
-        buyProduct.purchaseScreen();
+        PurchaseScreen purchaseScreen = new PurchaseScreen(this);     
     }
 
     @Override

@@ -1,3 +1,13 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+//package com.mycompany.finalproject;
+
+/**
+ *
+ * @author 66490812
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,14 +54,14 @@ public class Intro implements ActionListener {
     }
 
     public static void main(String[] args) {
-
+        
         Intro intro = new Intro();}
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==signUp) {
             frame.dispose();
-            UserInfo x = new UserInfo();
+            signup x = new signup();
         }
         if(e.getSource()==signIn){
             frame.dispose();

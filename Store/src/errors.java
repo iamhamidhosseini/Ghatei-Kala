@@ -1,3 +1,9 @@
+
+
+/**
+ *
+ * @author 66490812
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,12 +27,12 @@ public class errors implements ActionListener {
         frame.getContentPane().setBackground(Color.gray);
         frame.setVisible(true);
         ///////////////////////////////////// Set button ////////////////////////////////
-
+        
         back.setBounds(600,600,300,70);
         back.setFont(font);
         back.setFocusable(false);
         back.addActionListener(this);frame.add(back);
-
+        
         ///////////////////////////////////// Set text //////////////////////////////////
         if (error == -1) {
             text.setFont(font);

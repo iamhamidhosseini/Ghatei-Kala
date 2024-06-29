@@ -1,3 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Padidar
+ */
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -6,6 +16,13 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AddProduct extends JFrame implements ActionListener{
 
@@ -19,13 +36,13 @@ public class AddProduct extends JFrame implements ActionListener{
     JButton chooseImage = new JButton("انتخاب تصویر");
     File file;
     BufferedImage bufferedImage;
-    String filePath = "/home/...";
+    String filePath = "C:\\Users\\Padidar\\Documents\\NetBeansProjects\\GKALA";
     JFileChooser fileChooser = new JFileChooser(filePath);
 
     JButton addProduct = new JButton("افزودن کالا");
 
     public void frame(){
-        this.setSize(800, 400);
+        this.setSize(800, 500);
         this.setLayout(null);
 
         productName.setBounds(50, 35, 100, 50);
@@ -83,7 +100,23 @@ public class AddProduct extends JFrame implements ActionListener{
             this.revalidate();
             this.repaint();
         } else if (e.getSource() == addProduct) {
-
+            try {
+                String host="jdbc:derby://localhost:1527/P";
+                String username="MAMAD", password="1020315";
+                Connection con = DriverManager.getConnection( host, username, password );
+                Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                String SQL="select * from PRODUCTS";
+                ResultSet rs=stmt.executeQuery(SQL);
+                rs.moveToInsertRow();
+                rs.updateString("PRODUCTNAME",enterProductName.getText());
+                rs.updateString("PRICE", enterProductPrice.getText());
+                rs.updateString("ADDRESS",fileChooser.getSelectedFile().getAbsolutePath());
+                rs.insertRow();
+                rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.dispose();
         }
     }
 }
