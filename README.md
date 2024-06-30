@@ -1,4 +1,4 @@
-![photo_2024-06-30_18-49-50](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/8998e35a-d334-42a0-a8fc-2fbc9074c74a)# Ghatei Kala
+# Ghatei Kala
 
 A simple rendition of an online supermarket, including an intro screen, login/signup screen, a product list, a user info screen, a shoping cart, and a checkout screen.
 
