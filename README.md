@@ -3,11 +3,13 @@
 A simple rendition of an online supermarket, including an intro screen, login/signup screen, a product list, a user info screen, a shoping cart, and a checkout screen.
 
 # Intro Screen
+
 The intro screen offers two options to go forward: Signing up, or logging in.
 
 ![photo_2024-06-30_17-11-15](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/b398f06f-033a-49a4-9606-687712b98012)
 
 - Signup
+
 Fields will come up for the user to insert their information.
 
 ![photo_2024-06-30_17-11-16](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/64af6016-3b05-444a-959d-0d1162fed3f2)
@@ -16,7 +18,8 @@ This information consists of your name, your last name, phone number, ID number,
 The phone number must contain at least 11 characters, the email address must begin with a @ symbol, otherwise it will give an error.
 
 - Login
-Login does not require any information other than the users phone number and password.
+
+This does not require any information other than the users phone number and password.
 
 ![photo_2024-06-30_17-11-17](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/85d8c2e5-f2dd-4c47-866b-cbb53935eb98)
 
@@ -30,11 +33,13 @@ The Product List screen offers an index of all available products in the store. 
   ![photo_2024-06-30_17-11-21 (2)](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/d0e74d3d-51a2-4f49-a0b5-df45ace158f6)
   
   - Purchase Screen
+  
   This screen brings an overview of the selected product, including the option to add the item to the shopping cart.
 
   ![photo_2024-06-30_17-11-34](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/47a1add5-7bec-48ee-b2c7-2bd14ffffd05)
   
     - Shopping Cart
+  
     After choosing desired items, the user can review the chosen products in the shopping cart.
 
     ![photo_2024-06-30_17-11-37](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/d17a33fc-fb99-4890-981e-797b68e68ca9)
@@ -67,11 +72,13 @@ The Product List screen offers an index of all available products in the store. 
   ![photo_2024-06-30_17-11-18](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/21cfd1d8-9ee4-4267-89cc-770b0c509800)
 
     - Remove Product
+ 
     The manager can review the details of the product, and finally can choose to remove the product in this page.
     
   ![photo_2024-06-30_17-11-19 (2)](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/e3787228-2b21-49e0-b8a8-e26e42aa45b7)
 
     - Add Product
+  
     This page allows the manager to add a product. The required fields are a name, a price, and an address for the product's image.
     
   ![photo_2024-06-30_17-11-20](https://github.com/iamhamidhosseini/Ghatei-Kala/assets/153517669/a3e17b6b-5625-4c05-b99d-04a47af5be41)
